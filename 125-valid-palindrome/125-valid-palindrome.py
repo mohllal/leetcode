@@ -1,5 +1,5 @@
 class Solution:
-    def isPalindromeNaive(self, s: str) -> bool:
+    def isPalindromeNative(self, s: str) -> bool:
         result = ''.join(ch.lower() for ch in s if ch.isalnum())
         
         return result == result[::-1]
