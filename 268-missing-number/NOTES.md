@@ -1,0 +1,1 @@
+Sum of N natural numbers: https://www.cuemath.com/sum-of-natural-numbers-formula/
