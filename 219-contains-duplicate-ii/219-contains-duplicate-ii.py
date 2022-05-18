@@ -14,7 +14,7 @@ class Solution:
 
         return False
 
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+    def containsNearbyDuplicateSlower2(self, nums: List[int], k: int) -> bool:
         for i in range(0, len(nums)):
             nums[i] = (nums[i], i)
         
@@ -26,5 +26,17 @@ class Solution:
             if current == val and abs(index - j) <= k:
                 return True
             val, index = nums[i]
+
+        return False
+
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        hashtable = {}
+
+        for i in range(0, len(nums)):
+            if nums[i] in hashtable:
+                diff = abs(hashtable[nums[i]] - i)
+                if diff <= k:
+                    return True
+            hashtable[nums[i]] = i
 
         return False
