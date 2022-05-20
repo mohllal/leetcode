@@ -1,5 +1,19 @@
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+    def findMaxConsecutiveOnesWithTwoPointers(self, nums: List[int]) -> int:
+        result = 0
+        i = 0
+        j = 0
+        while j < len(nums):
+            if nums[j] == 1:
+                j += 1
+            else:
+                result = max((j - i), result)
+                j += 1
+                i = j
+
+        return max(result, (j - i))
+
+    def findMaxConsecutiveOnesIterative(self, nums: List[int]) -> int:
         result = 0
         current = 0
         for num in nums:
@@ -8,4 +22,8 @@ class Solution:
                 result = max(result, current)
             else:
                 current = 0
+
         return result
+    
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        return self.findMaxConsecutiveOnesWithTwoPointers(nums)
