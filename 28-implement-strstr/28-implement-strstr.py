@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def strStr(self, haystack: str, needle: str) -> int:
         i = 0
         j = 0
@@ -16,6 +17,3 @@ class Solution:
             return i
         else:
             return -1
-                
-            
-            

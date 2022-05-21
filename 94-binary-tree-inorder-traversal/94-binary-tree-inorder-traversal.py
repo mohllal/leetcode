@@ -7,6 +7,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
+    # O(n) time and O(n) space
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if root is None:
             return []

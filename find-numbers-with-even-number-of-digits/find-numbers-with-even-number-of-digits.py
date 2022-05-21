@@ -1,5 +1,6 @@
 class Solution:
-    def findNumbersI(self, nums: List[int]) -> int:
+    # O(n ^ 2) time and O(1) space
+    def findNumbersQuadraticTimeAndConstantSpace1(self, nums: List[int]) -> int:
         result = 0
         for num in nums:
             if len(str(num)) % 2 == 0:
@@ -7,7 +8,8 @@ class Solution:
     
         return result
 
-    def findNumbersII(self, nums: List[int]) -> int:
+    # O(n ^ 2) time and O(1) space
+    def findNumberQuadraticTimeAndConstantSpace2(self, nums: List[int]) -> int:
         result = 0
         for num in nums:
             digits = 0
@@ -21,4 +23,4 @@ class Solution:
         return result
 
     def findNumbers(self, nums: List[int]) -> int:
-        return self.findNumbersI(nums)
+        return self.findNumbersQuadraticTimeAndConstantSpace1(nums)

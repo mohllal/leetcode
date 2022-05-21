@@ -1,6 +1,6 @@
 class Solution:
     # O(n * log n) time and O(n) space
-    def sortedSquaresNLogN(self, nums: List[int]) -> List[int]:
+    def sortedSquaresLinearithmicTimeAndLinearSpace(self, nums: List[int]) -> List[int]:
         result = []
         for num in nums:
             result.append(num ** 2)
@@ -8,7 +8,7 @@ class Solution:
         return result
     
     # O(n) time and O(n) space
-    def sortedSquaresN(self, nums: List[int]) -> List[int]:
+    def sortedSquaresLinearTimeAndLinearSpace(self, nums: List[int]) -> List[int]:
         result = [None] * len(nums)
         i = 0
         j = len(nums) - 1
@@ -26,4 +26,4 @@ class Solution:
         return result
 
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        return self.sortedSquaresN(nums)
+        return self.sortedSquaresLinearTimeAndLinearSpace(nums)

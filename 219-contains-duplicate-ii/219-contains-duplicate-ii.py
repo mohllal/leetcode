@@ -1,20 +1,6 @@
 class Solution:
-    def containsNearbyDuplicateSlower(self, nums: List[int], k: int) -> bool:
-        hashtable = {}
-        
-        for i in range(0, len(nums)):
-            if nums[i] in hashtable:
-                indexes = hashtable[nums[i]]
-                for index in indexes:
-                    if abs(i - index) <= k:
-                        return True
-                hashtable[nums[i]].append(i)
-            else:
-                hashtable[nums[i]] = [i]
-
-        return False
-
-    def containsNearbyDuplicateSlower2(self, nums: List[int], k: int) -> bool:
+    # O(n * log n) time and O(1) space
+    def containsNearbyDuplicateLinearithmicTimeAndConstantSpace(self, nums: List[int], k: int) -> bool:
         for i in range(0, len(nums)):
             nums[i] = (nums[i], i)
         
@@ -28,15 +14,35 @@ class Solution:
             val, index = nums[i]
 
         return False
-
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        hashtable = {}
-
+    
+    # O(n) time and O(n) space
+    def containsNearbyDuplicateLinearTimeAndLinearSpace1(self, nums: List[int], k: int) -> bool:
+        hashTable = {}
+        
         for i in range(0, len(nums)):
-            if nums[i] in hashtable:
-                diff = abs(hashtable[nums[i]] - i)
-                if diff <= k:
-                    return True
-            hashtable[nums[i]] = i
+            if nums[i] in hashTable:
+                indexes = hashTable[nums[i]]
+                for index in indexes:
+                    if abs(i - index) <= k:
+                        return True
+                hashTable[nums[i]].append(i)
+            else:
+                hashTable[nums[i]] = [i]
 
         return False
+
+    # O(n) time and O(n) space
+    def containsNearbyDuplicateLinearTimeAndLinearSpace2(self, nums: List[int], k: int) -> bool:
+        hashTable = {}
+
+        for i in range(0, len(nums)):
+            if nums[i] in hashTable:
+                diff = abs(hashTable[nums[i]] - i)
+                if diff <= k:
+                    return True
+            hashTable[nums[i]] = i
+
+        return False
+    
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        return self.containsNearbyDuplicateLinearTimeAndLinearSpace2(nums, k)

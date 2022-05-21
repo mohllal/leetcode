@@ -1,11 +1,12 @@
 class Solution:
+    # O(n) time and O(n) space
     def containsDuplicate(self, nums: List[int]) -> bool:
-        hashtable = {}
+        hashTable = {}
         
         for i in range(0, len(nums)):
-            if nums[i] in hashtable:
+            if nums[i] in hashTable:
                 return True
             else:
-                hashtable[nums[i]] = True
+                hashTable[nums[i]] = True
 
         return False

@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def removeDuplicates(self, nums: List[int]) -> int:
         i = 0
         j = 0

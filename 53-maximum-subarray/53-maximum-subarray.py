@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def maxSubArray(self, nums: List[int]) -> int:
         current = nums[0]
         maximum = nums[0]

@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def romanToInt(self, s: str) -> int:
         roman = {
             'I': (1, 0),
@@ -22,4 +23,3 @@ class Solution:
             lastIndex = index
 
         return result
-                

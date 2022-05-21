@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(n) space
     def firstUniqChar(self, s: str) -> int:
         hashTable = {}
         for i in range(len(s) - 1, -1, -1):

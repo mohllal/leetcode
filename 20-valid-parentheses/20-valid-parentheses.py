@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(n) space
     def isValid(self, s: str) -> bool:
         openings = '({[';
         pairs = { '(': ')', '{': '}', '[': ']' };

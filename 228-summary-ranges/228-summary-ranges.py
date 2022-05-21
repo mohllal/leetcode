@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(n) space
     def summaryRanges(self, nums: List[int]) -> List[str]:
         if len(nums) == 0:
             return []

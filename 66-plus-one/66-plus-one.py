@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(n) space
     def plusOne(self, digits: List[int]) -> List[int]:
         result = []
         remaining = 1
@@ -18,5 +19,3 @@ class Solution:
             result = [1] + result
 
         return result
-            
-            

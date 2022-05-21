@@ -1,6 +1,7 @@
 class Solution:
+    # O(n) time and O(1) space
     def lengthOfLastWord(self, s: str) -> int:
-        word = ''
+        length = 0
         last = True
         for i in range(len(s) - 1, -1, -1):
             if s[i] == ' ':
@@ -10,6 +11,6 @@ class Solution:
                     break
             else:
                 last = False
-                word += s[i]
+                length += 1
 
-        return len(word)
+        return length

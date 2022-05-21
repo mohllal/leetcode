@@ -1,10 +1,12 @@
 class Solution:
-    def isPalindromeNative(self, s: str) -> bool:
+    # O(n) time and O(n) space
+    def isPalindromeLinearTimeAndLinearSpace(self, s: str) -> bool:
         result = ''.join(ch.lower() for ch in s if ch.isalnum())
         
         return result == result[::-1]
 
-    def isPalindrome(self, s: str) -> bool:
+    # O(n) time and O(1) space
+    def isPalindromeLinearTimeAndConstantSpace(self, s: str) -> bool:
         i = 0
         j = len(s) - 1
         
@@ -20,3 +22,6 @@ class Solution:
             i += 1
             j -= 1
         return True
+
+    def isPalindrome(self, s: str) -> bool:
+        return self.isPalindromeLinearTimeAndConstantSpace(s)

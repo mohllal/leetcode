@@ -1,4 +1,5 @@
 class Solution:
+    # O(1) time and O(1) space
     def add(self, x: int, y: int, z: int):
         arr = [x, y, z]
         ones = arr.count(1)
@@ -12,6 +13,7 @@ class Solution:
         else:
             return 1, 1
 
+    # O(n) time and O(n) space
     def addBinary(self, a: str, b: str) -> str:
         i = len(a) - 1
         j = len(b) - 1

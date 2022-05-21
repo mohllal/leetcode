@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def removeElement(self, nums: List[int], val: int) -> int:
         i = 0
         j = 0

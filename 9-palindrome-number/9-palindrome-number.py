@@ -1,5 +1,6 @@
 class Solution:
-    def isPalindromeNaive(self, x: int) -> bool:
+    # O(1) time and O(n) space
+    def isPalindromeConstantTimeAndLinearSpace(self, x: int) -> bool:
         if x < 0 or (x % 10 == 0 and x != 0):
             return False;
         
@@ -8,7 +9,8 @@ class Solution:
 
         return xStr == xStrReversed;
     
-    def isPalindrome(self, x: int) -> bool:
+    # O(n) time and O(1) space
+    def isPalindromeLinearTimeAndConstantSpace(self, x: int) -> bool:
         if x < 0 or (x % 10 == 0 and x != 0):
             return False;
 
@@ -19,3 +21,6 @@ class Solution:
             x //= 10;
 
         return x == lastHalfRevertedNumber or x == lastHalfRevertedNumber//10;
+    
+    def isPalindrome(self, x: int) -> bool:
+        return self.isPalindromeLinearTimeAndConstantSpace(x)

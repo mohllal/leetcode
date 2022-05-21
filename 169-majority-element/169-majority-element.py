@@ -1,33 +1,39 @@
 class Solution:
-    def majorityElementNaive(self, nums: List[int]) -> int:
+    # O(n ^ 2) time and O(1) space
+    def majorityElementQuadraticTimeAndConstantSpace(self, nums: List[int]) -> int:
         for i in range(len(nums)):
-            current = nums[i];
-            count = 0;
+            current = nums[i]
+            count = 0
             for j in range(len(nums)):
                 if current == nums[j]:
-                    count += 1;
+                    count += 1
                 if count > len(nums) // 2:
-                    return nums[j];
+                    return nums[j]
     
-    def majorityElementFaster(self, nums: List[int]):
-        nums.sort();
-        count, temp = 1, nums[0];
+    # O(n * log n) time and O(1) space
+    def majorityElementLinearithmicTimeAndConstantSpace(self, nums: List[int]):
+        nums.sort()
+        count, temp = 1, nums[0]
         for i in range(1, len(nums)):
             if temp == nums[i]:
-                count += 1;
+                count += 1
             else:
                 count = 1;
-                temp = nums[i];
+                temp = nums[i]
             if count > len(nums) // 2:
-                return nums[i];
+                return nums[i]
 
-    def majorityElement(self, nums: List[int]):
-        candidate, count = nums[0], 1;
+    # O(n) time and O(1) space
+    def majorityElementLinearTimeAndConstantSpace(self, nums: List[int]):
+        candidate, count = nums[0], 1
         for i in range(1, len(nums)):
             if count == 0:
-                candidate = nums[i];
+                candidate = nums[i]
             if candidate == nums[i]:
-                count += 1;
+                count += 1
             else:
-                count -= 1;
-        return candidate;
+                count -= 1
+        return candidate
+    
+    def majorityElement(self, nums: List[int]):
+        return self.majorityElementLinearTimeAndConstantSpace(nums)

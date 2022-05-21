@@ -5,6 +5,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
+    # O(n) time and O(n) space
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if root is None:
             return []
@@ -20,4 +21,4 @@ class Solution:
             if node.left:
                 stack.append(node.left)
 
-        return preorder            
+        return preorder
