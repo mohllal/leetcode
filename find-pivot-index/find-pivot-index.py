@@ -15,7 +15,7 @@ class Solution:
         return -1 if leftSum != 0 else len(nums) - 1
     
     # O(n) time and O(n) space
-    def pivotIndexLinearTimeAndConstantSpace(self, nums: List[int]) -> int:
+    def pivotIndexLinearTimeAndLinearSpace(self, nums: List[int]) -> int:
         sums = [0]
         current = 0
         for i in range(0, len(nums)):
@@ -32,4 +32,4 @@ class Solution:
         return -1
     
     def pivotIndex(self, nums: List[int]) -> int:
-        return self.pivotIndexLinearTimeAndConstantSpace(nums)
+        return self.pivotIndexLinearTimeAndLinearSpace(nums)
