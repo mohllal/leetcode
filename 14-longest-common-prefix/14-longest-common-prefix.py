@@ -1,6 +1,6 @@
 class Solution:
-    # O(n ^ 2) time and O(n) space
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    # O(n * s) time and O(n) space
+    def longestCommonPrefixQuadraticTimeAndLinearSpace(self, strs: List[str]) -> str:
         hashTable = {}
         for element in strs:
             for i in range(0, len(element)):
@@ -18,3 +18,20 @@ class Solution:
                 maximum = hashTable[element]
         
         return result if (maximum == len(strs)) else ''
+    
+    # O(n * s) time and O(1) space
+    def longestCommonPrefixQuadraticTimeAndConstantSpace(self, strs: List[str]) -> str:
+        if len(strs) == 0:
+            return ''
+
+        prefix = strs[0]
+        for i in range(1, len(strs)):
+            while strs[i].find(prefix) != 0:
+                prefix = prefix[:len(prefix) - 1]
+                if len(prefix) == 0:
+                    return ''
+
+        return prefix                
+
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        return self.longestCommonPrefixQuadraticTimeAndConstantSpace(strs)
