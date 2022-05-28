@@ -6,6 +6,17 @@ class TreeNode:
 
 class Solution:
     # O(n) time and O(n) space
+    def inorderTraversalRecursive(self, root: Optional[TreeNode], inorder: List[int]) -> List[int]:
+        if root is None:
+            return
+
+        left = self.inorderTraversalRecursive(root.left, inorder)
+        inorder.append(root.val)
+        right = self.inorderTraversalRecursive(root.right, inorder)
+        
+        return inorder
+
+    # O(n) time and O(n) space
     def inorderTraversalIterative(self, root: Optional[TreeNode]) -> List[int]:
         if root is None:
             return []
@@ -26,4 +37,6 @@ class Solution:
         return inorder
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        return self.inorderTraversalIterative(root)
+        inorder = []
+        self.inorderTraversalRecursive(root, inorder)
+        return inorder
