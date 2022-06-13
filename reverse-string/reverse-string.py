@@ -1,12 +1,12 @@
 class Solution:
-    # O(n) time and O(1) space
-    def reverseStringIterative(self, s: List[str]) -> None:
-        mid = len(s) // 2
-        length = len(s) - 1
-        
-        for i in range(0, mid):
-            s[i], s[length - i] = s[length - i], s[i]
-            
+    # O(n) time and O(n) space
+    def reverseStringRecursive(self, s: List[str], start: int, end: int) -> None:
+        if start >= end:
+            return
+
+        s[start], s[end] = s[end], s[start]        
+        self.reverseStringRecursive(s, start + 1, end - 1)
+
     # O(n) time and O(1) space
     def reverseStringTwoPointers(self, s: List[str]) -> None:
         i = 0
@@ -18,4 +18,5 @@ class Solution:
             j -= 1
 
     def reverseString(self, s: List[str]) -> None:
-        return self.reverseStringTwoPointers(s)
+        # return self.reverseStringTwoPointers(s)
+        return self.reverseStringRecursive(s, 0, len(s) - 1)
