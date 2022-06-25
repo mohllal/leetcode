@@ -1,0 +1,1 @@
+Power of three: https://en.wikipedia.org/wiki/Power_of_three
