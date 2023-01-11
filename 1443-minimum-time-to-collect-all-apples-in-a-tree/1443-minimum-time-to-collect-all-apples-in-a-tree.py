@@ -11,13 +11,11 @@ class Solution:
             return 0
 
         totalTime = 0
-        childTime = 0
         for child in adjacent[node]:
             if child == parent:
                 continue
 
             childTime = self.dfs(child, node, adjacent, hasApple)
-            
             if childTime > 0 or hasApple[child]:
                 totalTime += 2 + childTime
         
