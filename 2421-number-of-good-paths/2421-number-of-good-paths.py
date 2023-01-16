@@ -1,56 +1,56 @@
+class DisjointSet:
+    def __init__(self, size):
+        self.parent = [i for i in range(size)]
+        self.rank = [0] * size
+ 
+    def find(self, k):
+        if self.parent[k] != k:
+            self.parent[k] = self.find(self.parent[k])
+        return self.parent[k]
+
+    def union(self, a, b):
+        x = self.find(a)
+        y = self.find(b)
+
+        if x == y:
+            return
+
+        if self.rank[x] > self.rank[y]:
+            self.parent[y] = x
+        elif self.rank[x] < self.rank[y]:
+            self.parent[x] = y
+        else:
+            self.parent[x] = y
+            self.rank[y] = self.rank[y] + 1
+
 class Solution:
-    # O(n) time and O(n) space
-    def bfs(self, node, adjacent, values):
-        goodPaths = 1
-        if node not in adjacent:
-            return goodPaths
-
-        queue = deque(adjacent[node])
-        visited = set([node])
-        while queue:
-            current = queue.popleft()
-            visited.add(current)
-
-            if values[node] < values[current]:
-                continue
-        
-            if values[node] == values[current]:
-                goodPaths += 1
-
-            for child in adjacent[current] - visited:
-                queue.append(child)
-    
-        return goodPaths
-    
-    # O(n ^ 2) time and O(n ^ 2) space
-    def numberOfGoodPathsNaive(self, vals: List[int], edges: List[List[int]]) -> int:
-        pass
-    
-    def find(self, parent, x):
-        if parent[x] != x:
-            parent[x] = self.find(parent, parent[x])
-        return parent[x]
-    
     def numberOfGoodPaths(self, vals: List[int], edges: List[List[int]]) -> int:
-        g = defaultdict(list)
-        for a, b in edges:
-            g[a].append(b)
-            g[b].append(a)
-
         n = len(vals)
-        p = list(range(n))
-        size = defaultdict(Counter)
-        for i, v in enumerate(vals):
-            size[i][v] = 1
 
-        ans = n
-        for v, a in sorted(zip(vals, range(n))):
-            for b in g[a]:
-                if vals[b] > v:
-                    continue
-                pa, pb = self.find(p, a), self.find(p, b)
-                if pa != pb:
-                    ans += size[pa][v] * size[pb][v]
-                    p[pa] = pb
-                    size[pb][v] += size[pa][v]
-        return ans
+        adjacent: DefaultDict[int, list] = defaultdict(lambda: [])
+        for edge in edges:
+            adjacent[edge[0]].append(edge[1])
+            adjacent[edge[1]].append(edge[0])
+            
+        valuesToNodes: DefaultDict[int, list] = defaultdict(lambda: [])
+        for i in range(n):
+            valuesToNodes[vals[i]].append(i)
+        
+        valuesToNodesSortedItems = sorted(valuesToNodes.items(), key=lambda x: x[0])
+        
+        disjointSet = DisjointSet(n)
+        goodPaths = 0
+        for val, nodes in valuesToNodesSortedItems:
+            for node in nodes:
+                for child in adjacent[node]:
+                    if vals[child] <= val:
+                        disjointSet.union(child, node)
+            
+            group: DefaultDict[int, int] = defaultdict(lambda: 0)
+            for node in nodes:
+                parent = disjointSet.find(node)
+                group[parent] += 1
+            
+            for _, paths in group.items():
+                goodPaths += paths * (paths + 1) // 2
+        return goodPaths
