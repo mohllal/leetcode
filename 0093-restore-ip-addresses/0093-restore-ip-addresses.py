@@ -18,12 +18,10 @@ class Solution:
         return True
             
     def backtrack(self, s, subsets):
-        if s.count('.') == 5:
-            return
-     
-        if self.isValidIP(s):
-            subsets.add(s)
-            return    
+        if s.count('.') == 3:
+            if self.isValidIP(s):
+                subsets.add(s)
+            return     
         else:
             last = s.rfind('.')
             
