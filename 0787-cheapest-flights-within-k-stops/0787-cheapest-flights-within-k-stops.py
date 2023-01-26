@@ -1,7 +1,6 @@
 class Solution:
     # O((|e| + |v|) * log|v|) time and O(|v| + |e|) space
     def dijkstra(self, graph, src, dst, k):
-        prices: DefaultDict[int, int] = defaultdict(lambda: float("inf"), {src: 0})
         stops: DefaultDict[int, Optional[int]] = defaultdict(lambda: 0)
         priortyQueue = [(0, src, k + 1)]
         
