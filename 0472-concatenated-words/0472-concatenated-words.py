@@ -3,10 +3,10 @@ class Solution:
         if length == len(word):
             return True
 
-        if visited[length]:
-            return False
+#         if visited[length]:
+#             return False
 
-        visited[length] = True
+#         visited[length] = True
         for i in range(len(word) - (1 if length == 0 else 0), length, -1):
             if (
                 word[length:i] in words and
