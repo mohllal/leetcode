@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def maxArea(self, height: List[int]) -> int:
         left = 0
         right = len(height) - 1
