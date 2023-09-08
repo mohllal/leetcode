@@ -9,7 +9,8 @@ class Solution:
             current += digits[i]
             
             if i >= k - 1:
-                if int(current) != 0 and num % int(current) == 0:
+                divisor = int(current)
+                if divisor != 0 and num % divisor == 0:
                     result += 1
                 current = current[1:]
 
