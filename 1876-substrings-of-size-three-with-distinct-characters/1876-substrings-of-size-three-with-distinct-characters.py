@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 class Solution:
+    # O(n) time and O(n) space
     def countGoodSubstrings(self, s: str) -> int:
         characters = list(s)
         
