@@ -25,12 +25,10 @@ class Solution:
         for row in range(rStart + 1, rEnd + 1):
             output.append(matrix[row][cEnd])
 
-        for column in reversed(range(cStart, cEnd)):
-            if rEnd == rStart:
-                break
-            output.append(matrix[rEnd][column])
+        if rEnd != rStart:
+            for column in reversed(range(cStart, cEnd)):
+                output.append(matrix[rEnd][column])
 
-        for row in reversed(range(rStart + 1, rEnd)):
-            if cEnd == cStart:
-                break
-            output.append(matrix[row][cStart])
+        if cEnd != cStart:
+            for row in reversed(range(rStart + 1, rEnd)):
+                output.append(matrix[row][cStart])
