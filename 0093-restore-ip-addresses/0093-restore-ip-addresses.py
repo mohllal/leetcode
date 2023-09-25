@@ -1,43 +1,29 @@
 class Solution:
-    def insertDot(self, string, index):
-        return string[:index] + '.' + string[index:]
+    def isValidIPAddressPart(self, part):
+        return part and int(part) <= 255 and len(part) == len(str(int(part)))
 
-    def isValidIP(self, s):
-        divs = s.replace('.', ' ').split()
+    # O(1) time and O(1) space
+    def restoreIpAddressesIterative(self, s):
+        ipAddresses = []
+    
+        for i in range(1, 4):
+            for j in range(1, 4):
+                for k in range(1, 4):
+                    firstPart = s[:i]
+                    secondPart = s[i:i+j]
+                    thirdPart = s[i+j:i+j+k]
+                    fourthPart = s[i+j+k:]
 
-        if len(divs) != 4:
-            return False
+                    if (
+                        self.isValidIPAddressPart(firstPart) and
+                        self.isValidIPAddressPart(secondPart) and
+                        self.isValidIPAddressPart(thirdPart) and
+                        self.isValidIPAddressPart(fourthPart)
+                    ):
+                        ipAddress = ".".join([firstPart, secondPart, thirdPart, fourthPart])
+                        ipAddresses.append(ipAddress)                
 
-        for div in divs:
-            if len(div) > 1 and div[0] == '0':
-                return False
-
-            if int(div) > 255:
-                return False
-
-        return True
-
-    def backtrack(self, s, subsets):
-        if s.count('.') == 3:
-            if self.isValidIP(s):
-                subsets.add(s)
-            return
-        else:
-            last = s.rfind('.')
-
-            oneDigitDiv = self.insertDot(s, last + 2)
-            self.backtrack(oneDigitDiv, subsets)
-
-            twoDigitDiv = self.insertDot(s, last + 3)
-            self.backtrack(twoDigitDiv, subsets)
-
-            threeDigitDiv = self.insertDot(s, last + 4)
-            self.backtrack(threeDigitDiv, subsets)
+        return ipAddresses
 
     def restoreIpAddresses(self, s: str) -> List[str]:
-        if len(s) > 12 or len(s) < 4:
-            return []
-        
-        subsets = set()
-        self.backtrack(s, subsets)
-        return [str(i) for i in subsets]
+        return self.restoreIpAddressesIterative(s)
