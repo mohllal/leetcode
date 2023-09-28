@@ -1,6 +1,6 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        return self.premuteAggergateAtLeafLevel(nums)
+        return self.premuteAggergateAtRootLevel(nums)
 
     # O(n*n!) time and O(n*n!) space
     def premuteAggergateAtLeafLevel(self, nums):
