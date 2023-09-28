@@ -55,7 +55,7 @@ class Solution:
         premutations = permuteHelper(nums)
         return premutations
 
-    # O(n!) time and O(n!) space
+    # O(n!) time and O(n*n!) space
     def premuteAggergateAtRootLevelMemoized(self, nums):
         def permuteHelper(nums, memo):
             if len(nums) == 1:
