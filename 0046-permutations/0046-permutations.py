@@ -1,6 +1,6 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        return self.premuteAggergateAtRootLevelMemoized(nums)
+        return self.premuteAnotherAggergateAtLeafLevel(nums)
 
     # O(n*n!) time and O(n*n!) space
     def premuteAggergateAtLeafLevel(self, nums):
@@ -25,6 +25,27 @@ class Solution:
         premutations = []
         prefix = []
         permuteHelper(nums, prefix, premutations)
+        return premutations
+    
+    # O(n*n!) time and O(n*n!) space
+    def premuteAnotherAggergateAtLeafLevel(self, nums):
+        def permuteHelper(nums, prefix, visited, premutations):
+            if len(prefix) == len(nums):
+                premutations.append(prefix[:])
+                return
+        
+            for i in range(len(nums)):
+                if not visited[i]:
+                    visited[i] = True
+                    prefix.append(nums[i])
+                    permuteHelper(nums, prefix, visited, premutations)
+                    visited[i] = False
+                    prefix.pop()
+
+        premutations = []
+        prefix = []
+        visited = [False] * len(nums)
+        permuteHelper(nums, prefix, visited, premutations)
         return premutations
 
     # O(n*n!) time and O(n*n!) space
