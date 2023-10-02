@@ -1,8 +1,8 @@
 class Solution:
     def letterCombinations(self, digits):
-        return self.letterCombinationsIterative(digits)
+        return self.letterCombinationsRecursive(digits)
 
-    # O(4^n) time and O(4^n) space
+    # O(n*4^n) time and O(n*4^n) space
     def letterCombinationsRecursive(self, digits):
         def letterCombinationsHelper(digits, associations, start, prefix, combinations):
             if start == len(digits):
@@ -10,10 +10,7 @@ class Solution:
                     combinations.append("".join(prefix[:]))
                 return
             
-            digit = digits[start]
-            buttons = associations[digit]
-            
-            for button in buttons:
+            for button in associations[digits[start]]:
                 prefix.append(button)
                 letterCombinationsHelper(digits, associations, start + 1, prefix, combinations)
                 prefix.pop()
@@ -36,7 +33,7 @@ class Solution:
         letterCombinationsHelper(digits, associations, start, prefix, combinations)
         return combinations
     
-    # O(4^n) time and O(4^n) space
+    # O(n*4^n) time and O(n*4^n) space
     def letterCombinationsIterative(self, digits):
         combinations = [""] if len(digits) > 0 else []
         associations = {
