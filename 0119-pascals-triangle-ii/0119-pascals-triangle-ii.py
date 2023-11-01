@@ -11,6 +11,3 @@ class Solution:
             currRow[i] = prevRow[i - 1] + prevRow[i]
 
         return currRow
-            
-            
-            
