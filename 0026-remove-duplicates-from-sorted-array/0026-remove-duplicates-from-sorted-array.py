@@ -1,4 +1,5 @@
 class Solution:
+    # O(n) time and O(1) space
     def removeDuplicates(self, nums: List[int]) -> int:
         current = 1
         next_non_duplicate = 1
