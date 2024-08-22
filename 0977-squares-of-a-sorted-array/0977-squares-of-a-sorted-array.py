@@ -5,7 +5,7 @@ class Solution:
         return sorted(squares)
     
     # O(n) time and O(n) space
-    def sortedSquaresLinearTimeAndLinearSpace(self, nums: List[int]) -> List[int]:
+    def sortedSquaresLinearTimeAndLinearSpace1(self, nums: List[int]) -> List[int]:
         squares = []
         
         minimum_element = abs(nums[0])
@@ -36,5 +36,25 @@ class Solution:
         
         return squares
 
+    # O(n) time and O(n) space
+    def sortedSquaresLinearTimeAndLinearSpace2(self, nums: List[int]) -> List[int]:
+        squares = []
+        
+        left = 0
+        right = len(nums) - 1
+    
+        while left <= right:
+            leftSquare = nums[left] ** 2
+            rightSquare = nums[right] ** 2
+            
+            if leftSquare >= rightSquare:
+                squares.append(leftSquare)
+                left += 1
+            else:
+                squares.append(rightSquare)
+                right -= 1
+            
+        return reversed(squares)
+
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        return self.sortedSquaresLinearTimeAndLinearSpace(nums)
+        return self.sortedSquaresLinearTimeAndLinearSpace2(nums)
