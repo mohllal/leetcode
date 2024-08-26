@@ -1,6 +1,6 @@
 class Solution:
-    # O(1) time and O(1) space
-    # the maximum number of digits `d` is 10 (because 2^31 - 1 = 2,147,483,647, which has 10 digits)
+    # O(log n) time and O(1) space
+    # d (number of digits) = (Log(10) n) + 1 ~ O(log n)
     def sumOfSquares(self, n: int) -> int:
         total = 0
 
@@ -10,7 +10,9 @@ class Solution:
 
         return total
 
-    def isHappy(self, n: int) -> bool:
+    # O(k * log n) time and O(k) space
+    # k is the number of iterations required to determine whether the number is happy or not.
+    def isHappy1(self, n: int) -> bool:
         squares = set()
         last_sum = self.sumOfSquares(n)
         
@@ -22,3 +24,18 @@ class Solution:
             last_sum = self.sumOfSquares(last_sum)
         
         return True
+    
+    # O(k * log n) time and O(1) space
+    # k is the number of iterations required to determine whether the number is happy or not.
+    def isHappy2(self, n: int) -> bool:
+        slow = n
+        fast = self.sumOfSquares(n)
+        
+        while fast != slow:
+            slow = self.sumOfSquares(slow)
+            fast = self.sumOfSquares(self.sumOfSquares(fast))
+        
+        return True if fast == 1 else False
+    
+    def isHappy(self, n: int) -> bool:
+        return self.isHappy2(n)
