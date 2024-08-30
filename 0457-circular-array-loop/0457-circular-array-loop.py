@@ -1,6 +1,6 @@
 class Solution:
     # O(n^2) time and O(n) space
-    def circularArrayLoop(self, nums: List[int]) -> bool:
+    def circularArrayLoopQuadraticTimeAndLinearSpace(self, nums: List[int]) -> bool:
         class ListNode:
             def __init__(self, value: int, direction: bool):
                 self.value = value
@@ -38,7 +38,7 @@ class Solution:
             next_node_idx = (i + nums[i]) % len(nums)
             next_node = nodes[next_node_idx]
             
-            # omitting cycles with one node length
+            # omitting self cycles (one node length cycle)
             if current_node != next_node:
                 current_node.next = next_node
 
@@ -47,3 +47,55 @@ class Solution:
                 return True
         
         return False
+    
+    # O(n) time and O(1) space
+    def circularArrayLoopLinearTimeAndConstantSpace(self, nums: List[int]) -> bool:
+        # O(1) time and O(1) space
+        def getNextIndex(nums: List[int], index: int) -> int:
+            return (index + nums[index]) % len(nums)
+        
+        # O(1) time and O(1) space
+        def getDirection(nums: List[int], index: int) -> bool:
+            return nums[index] > 0
+        
+        # O(1) time and O(1) space
+        def isSelfCycle(nums: List[int], index: int) -> bool:
+            return index == getNextIndex(nums, index)
+            
+        # O(n) time and O(1) space
+        def hasCycleWithSameDirection(nums: List[int], index: int) -> bool:
+            slow = index
+            fast = index
+            direction = True
+            
+            while True:
+                slow_direction = getDirection(nums, slow)
+                slow_next = getNextIndex(nums, slow)
+                
+                fast_direction = getDirection(nums, fast)
+                fast_next = getNextIndex(nums, fast)
+                fast_next_direction = getDirection(nums, fast_next)
+                fast_next_next = getNextIndex(nums, fast_next)
+                
+                # omitting self cycles (one node length cycle)
+                if slow == slow_next or fast == fast_next or fast_next == fast_next_next:
+                    break
+        
+                direction &= (slow_direction == fast_direction == fast_next_direction)
+        
+                slow = slow_next
+                fast = fast_next_next
+
+                if slow == fast:
+                    return direction
+            
+            return False
+        
+        for i in range(len(nums)):
+            if hasCycleWithSameDirection(nums, i):
+                return True
+
+        return False
+            
+    def circularArrayLoop(self, nums: List[int]) -> bool:
+        return self.circularArrayLoopLinearTimeAndConstantSpace(nums)
