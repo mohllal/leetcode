@@ -14,16 +14,21 @@ class Solution:
         def hasCycleWithSameDirection(head: Optional[ListNode]) -> bool:
             slow = head
             fast = head
-            direction = True
-            
-            while fast is not None and fast.next is not None:
-                direction &= (slow.direction == fast.direction == fast.next.direction)
         
+            while fast is not None and fast.next is not None:
+                # skip self cycles (one-node length cycle)
+                if slow == slow.next or fast == fast.next or fast.next == fast.next.next:
+                    break
+                
+                # skip cycles with mixed directions
+                if not (slow.direction == fast.direction == fast.next.direction):
+                    break
+
                 slow = slow.next
                 fast = fast.next.next
 
                 if slow == fast:
-                    return direction
+                    return True
             
             return False
         
@@ -37,10 +42,8 @@ class Solution:
             
             next_node_idx = (i + nums[i]) % len(nums)
             next_node = nodes[next_node_idx]
-            
-            # omitting self cycles (one node length cycle)
-            if current_node != next_node:
-                current_node.next = next_node
+
+            current_node.next = next_node
 
         for i in range(len(nodes)):
             if hasCycleWithSameDirection(nodes[i]):
@@ -62,8 +65,7 @@ class Solution:
         def hasCycleWithSameDirection(nums: List[int], index: int) -> bool:
             slow = index
             fast = index
-            direction = True
-            
+
             while True:
                 slow_direction = getDirection(nums, slow)
                 slow_next = getNextIndex(nums, slow)
@@ -73,17 +75,19 @@ class Solution:
                 fast_next_direction = getDirection(nums, fast_next)
                 fast_next_next = getNextIndex(nums, fast_next)
                 
-                # omitting self cycles (one node length cycle)
+                # skip self cycles (one-node length cycle)
                 if slow == slow_next or fast == fast_next or fast_next == fast_next_next:
                     break
-        
-                direction &= (slow_direction == fast_direction == fast_next_direction)
+                
+                # skip cycles with mixed directions
+                if not (slow_direction == fast_direction == fast_next_direction):
+                    break
         
                 slow = slow_next
                 fast = fast_next_next
 
                 if slow == fast:
-                    return direction
+                    return True
             
             return False
         
@@ -108,6 +112,7 @@ class Solution:
                 return True
             
             markCycleElementsAsVisited(nums, i)
+    
         return False
             
     def circularArrayLoop(self, nums: List[int]) -> bool:
