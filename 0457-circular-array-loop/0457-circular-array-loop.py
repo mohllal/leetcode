@@ -57,11 +57,7 @@ class Solution:
         # O(1) time and O(1) space
         def getDirection(nums: List[int], index: int) -> bool:
             return nums[index] > 0
-        
-        # O(1) time and O(1) space
-        def isSelfCycle(nums: List[int], index: int) -> bool:
-            return index == getNextIndex(nums, index)
-            
+
         # O(n) time and O(1) space
         def hasCycleWithSameDirection(nums: List[int], index: int) -> bool:
             slow = index
@@ -91,9 +87,25 @@ class Solution:
             
             return False
         
+        # O(n) time and O(1) space
+        def markCycleElementsAsVisited(nums: List[int], index: int) -> None:
+            slow = index
+            
+            # ensure that we only continue moving through the cycle while the elements
+            # we are visiting have the same direction as the starting element
+            while nums[slow] * nums[index] > 0:
+                nums[slow] = 0  # mark as visited
+                slow = getNextIndex(nums, slow)
+
         for i in range(len(nums)):
+            # skip visited elements
+            if nums[i] == 0:
+                continue
+            
             if hasCycleWithSameDirection(nums, i):
                 return True
+            
+            markCycleElementsAsVisited(nums, i)
 
         return False
             
