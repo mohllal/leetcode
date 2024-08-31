@@ -90,12 +90,14 @@ class Solution:
         # O(n) time and O(1) space
         def markCycleElementsAsVisited(nums: List[int], index: int) -> None:
             slow = index
+            temp = nums[index]
             
             # ensure that we only continue moving through the cycle while the elements
             # we are visiting have the same direction as the starting element
-            while nums[slow] * nums[index] > 0:
+            while nums[slow] * temp > 0:
+                next_slow = getNextIndex(nums, slow)
                 nums[slow] = 0  # mark as visited
-                slow = getNextIndex(nums, slow)
+                slow = next_slow
 
         for i in range(len(nums)):
             # skip visited elements
@@ -104,8 +106,6 @@ class Solution:
             
             if hasCycleWithSameDirection(nums, i):
                 return True
-            
-            markCycleElementsAsVisited(nums, i)
 
         return False
             
