@@ -106,7 +106,8 @@ class Solution:
             
             if hasCycleWithSameDirection(nums, i):
                 return True
-
+            
+            markCycleElementsAsVisited(nums, i)
         return False
             
     def circularArrayLoop(self, nums: List[int]) -> bool:
