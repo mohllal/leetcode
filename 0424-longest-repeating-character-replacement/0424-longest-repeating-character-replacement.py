@@ -12,7 +12,7 @@ class Solution:
             window_end_letter = s[window_end]        
             window_counter[window_end_letter] += 1
     
-            if (window_end - window_start + 1) - max(window_counter.values()) > k:
+            while (window_end - window_start + 1) - max(window_counter.values()) > k:
                 window_start_letter = s[window_start]
                 window_counter[window_start_letter] -= 1
                 window_start += 1
@@ -34,7 +34,7 @@ class Solution:
 
             max_letter_count = max(max_letter_count, window_counter[window_end_letter])
     
-            if (window_end - window_start + 1) - max_letter_count > k:
+            while (window_end - window_start + 1) - max_letter_count > k:
                 window_start_letter = s[window_start]
                 window_counter[window_start_letter] -= 1
                 window_start += 1
