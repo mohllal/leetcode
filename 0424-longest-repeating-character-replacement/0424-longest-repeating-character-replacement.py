@@ -44,4 +44,4 @@ class Solution:
         return longest_length
     
     def characterReplacement(self, s: str, k: int) -> int:
-        return self.characterReplacement1(s, k)
+        return self.characterReplacement2(s, k)
