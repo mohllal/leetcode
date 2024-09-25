@@ -20,9 +20,8 @@ class Solution:
         while current_node is not None:
             next_node = current_node.next
 
-            if current_position == left - 1:
-                node_before_start = current_node # node just before the 'left' position
-            elif current_position == left:
+            if current_position == left:
+                node_before_start = previous_node # node just before the 'left' position
                 start_node = current_node # node at the 'left' position
             elif current_position == right:
                 end_node = current_node # node at the 'right' position
