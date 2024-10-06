@@ -50,6 +50,7 @@ def reverseSubList(head: Optional[ListNode], start: int, end: int) -> Optional[L
     return head
 
 class Solution:
+    # O(n) time and O(1) space
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         # count the total number of nodes in the list
         count = 0
