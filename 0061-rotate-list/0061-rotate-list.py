@@ -29,7 +29,7 @@ class Solution:
             new_tail = new_tail.next
 
         new_head = new_tail.next
-        new_tail.next = None # break the link between the old tail and the new head
+        new_tail.next = None # # break the list
         tail.next = head  # connect the old tail of the list to the old head
         
         return new_head
